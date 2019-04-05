@@ -253,8 +253,8 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="">Add Task</a></li>
-            <li><a href="">Task List</a></li>
+            <li><a href="{{ route('tasks.create')}}">Add Task</a></li>
+            <li><a href="{{ route('tasks.index')}}">Task List</a></li>
           </ul>
         </li>
 
@@ -399,6 +399,18 @@ desired effect
           autoclose: true
         })
       })
+
+
+    function Validate() {
+        var ddlFruits = document.getElementById("activity_id");
+        if (ddlFruits.value == "") {
+            //If the "Please Select" option is selected display error.
+            alert("Please select an option!");
+            return false;
+        }
+        return true;
+    }
+
 
     </script>
 </body>

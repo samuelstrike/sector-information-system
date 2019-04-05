@@ -122,8 +122,8 @@
       <div class="col-lg-4">
         <div class="form-group">
           <label>Contractor Name</label>
-             <select style="width: 200px" class="form-control" id="contractor_id" name="contractor_id"  >
-                <option value="N/A">--SELECT--</option>
+             <select style="width: 200px" class="form-control" id="contractor_name" name="contractor_name"  >
+                <option value="">--SELECT--</option>
                 @foreach($contractors as $contractor)
                 <option value="{{$contractor->id}}">{{$contractor->name}}-cdb({{$contractor->cdb}})</option>
                 @endforeach

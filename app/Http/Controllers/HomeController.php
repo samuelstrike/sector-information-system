@@ -7,6 +7,7 @@ use App\Activity;
 use App\Sector;
 use App\Contractor;
 use App\User;
+use App\Task;
 use DB;
 
 class HomeController extends Controller
@@ -28,9 +29,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $activitys=Activity::all();
+        $activitys=Activity::paginate(7);
 
         $sectors=Sector::all();
+        $tasks=Task::all();
         
         $users=User::all();
         $contractors=Contractor::all();
@@ -40,7 +42,7 @@ class HomeController extends Controller
 
         
 
-        return view('home',compact('activitys','sectors','contractors','users'));
+        return view('home',compact('activitys','sectors','contractors','users','tasks'));
     }
 
 }

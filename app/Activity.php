@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Contractor;
+use App\Task;
 
 class Activity extends Model
 {
@@ -28,5 +29,8 @@ class Activity extends Model
     {
         return $this->belongsTo('App\User');
     }
-    
+    public function task()
+    {
+        return $this->hasMany('App\Task');
+    }
 }

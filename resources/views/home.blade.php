@@ -90,10 +90,13 @@
         </div>
       </div>
       <div class="col-md-6">
-      <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-
-            <thead>
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Projects</h3>
+        </div>
+        <div class="box-body no-padding">
+          <table class="table table-striped">
+            <tbody>
                 <tr>
                     <th>SL #</th>
                     <th>Project Name</th>
@@ -102,21 +105,19 @@
                     <th>location</th>
                     <th>Status</th>
                 </tr>
-            </thead>
-
+            </tbody>
             <tbody>
                 @foreach($activitys as $activity)
-             
-
                 <tr>
                   <td>{{$loop->iteration}}</td>
                   <td>{{$activity->name}}</td>
                   <td>{{$activity->user->sector->sector_name}}</td>
                   <td>{{$activity->user->name}}</td>
                   <td>{{$activity->location}}</td>
+                  <td>{{$activity->task}}</td>
                   <td></td>
                 </tr>
-               
+        
                 @endforeach
               
                 
@@ -125,6 +126,9 @@
             </tbody>
 
         </table>
+        </div>
+        
+        <center>{{$activitys->links()}}</center> 
     </div>
     </div>
 

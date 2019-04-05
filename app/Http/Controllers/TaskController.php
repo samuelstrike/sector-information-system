@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Activity;
-use App\Contractor;
-use App\User;
-use App\Sector;
-class ActivityController extends Controller
+use App\Task;
+
+class TaskController extends Controller
 {
-    
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,9 +20,11 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        
-         $activitys=Activity::orderBy('id','desc')->paginate(5);
-         return view('activity.index',['activitys'=>$activitys]);
+
+    	$tasks=Task::paginate(5);
+    	$activitys=Activity::all();
+
+    	return view('tasks.index',compact('tasks','activitys'));
 
     }
 
@@ -36,8 +35,9 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        $contractors=Contractor::all();
-        return view('activity.create',compact('contractors'));
+    	$activitys=Activity::all();
+    	return view('tasks.create',compact('activitys'));
+
     }
 
 
@@ -49,39 +49,22 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        $id = Auth::id();
-
         $this->validate($request, [
 
-            'name'=>'required|min:5',
-            'location'=>'required|min:3',
-            'start_date'=>'required|date',
-            'end_date'=>'required|date',
-            'total_budget'=>'required|numeric',
-            'est_budget'=>'required|numeric',
-            'bid_amount'=>'required|numeric',
-            'physical_progress'=>'required|numeric',
-            'financial_progress'=>'required|numeric',
-            'contractor_name'=>'required'
+            'activity_id'=>'required',
+            'project_status'=>'required',
+            'progress'=>'required|numeric|max:100'
 
         ]);
-        Activity::create([
+        Task::create([
 
-            'name'=>$request->name,
-            'user_id'=>$id,
-            'location'=>$request->location,
-            'start_date'=>$request->start_date,
-            'end_date'=>$request->end_date,
-            'total_budget'=>$request->total_budget,
-            'est_budget'=>$request->est_budget,
-            'bid_amount'=>$request->bid_amount,
-            'physical_progress'=>$request->physical_progress,
-            'financial_progress'=>$request->financial_progress,
-            'contractor_id'=>$request->contractor_name,
-            'remarks'=>$request->remarks
+            'activity_id'=>$request->activity_id,
+            'status'=>$request->project_status,
+            'progress'=>$request->progress
+           
         ]);
 
-        return redirect(route('activity.index'))->with('message','Activity/Project has been created successfully');
+        return redirect(route('tasks.index'))->with('message','The task has been added to the project');
     }
 
     /**
@@ -129,4 +112,6 @@ class ActivityController extends Controller
     {
         //
     }
+
+
 }

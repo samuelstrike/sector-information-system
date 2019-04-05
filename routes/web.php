@@ -30,6 +30,8 @@ Route::resource('posts', 'PostController');
 Route::resource('sectors','SectorController');
 Route::resource('activity','ActivityController');
 Route::resource('contractors','ContractorController');
+Route::resource('tasks','TaskController');
+
 
 //Route::get('contractors','ContractorsController@index')->name('contractors');
 
