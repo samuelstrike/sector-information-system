@@ -29,18 +29,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $activitys=Activity::paginate(7);
+        $activitys=Activity::paginate(5);
 
         $sectors=Sector::all();
         $tasks=Task::all();
         
         $users=User::all();
         $contractors=Contractor::all();
-
-        
-
-
-        
 
         return view('home',compact('activitys','sectors','contractors','users','tasks'));
     }

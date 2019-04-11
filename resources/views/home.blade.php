@@ -104,6 +104,7 @@
                     <th>Project Manager</th>
                     <th>location</th>
                     <th>Status</th>
+                    
                 </tr>
             </tbody>
             <tbody>
@@ -114,20 +115,18 @@
                   <td>{{$activity->user->sector->sector_name}}</td>
                   <td>{{$activity->user->name}}</td>
                   <td>{{$activity->location}}</td>
-                  <td>{{$activity->task}}</td>
-                  <td></td>
+                  @foreach ($activity->task as $activity_task)
+                  <td>{{ $activity_task->status }}</td> 
+                
+                  @endforeach
+                  
                 </tr>
         
                 @endforeach
-              
-                
-
-        
             </tbody>
 
         </table>
-        </div>
-        
+        </div> 
         <center>{{$activitys->links()}}</center> 
     </div>
     </div>

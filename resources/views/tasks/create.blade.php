@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
           <label>Status of the Project</label>
-             <select class="form-control" id="project_status" name="project_status"  >
+             <select class="form-control" id="status" name="status"  >
                 <option value="">--SELECT--</option>
                 <option value="not started">Not started</option>
                 <option value="on track">On track</option>
@@ -38,7 +38,7 @@
             
              </select>
     </div>
-    <div class="form-group">
+    
         <div class="form-group">
           {{ Form::label('project_progress', 'Project Progress')}}
           <div class="input-group">
@@ -46,7 +46,6 @@
             <span class="input-group-addon">%</span>
           </div>
         </div>
-    </div>
     
     {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
 

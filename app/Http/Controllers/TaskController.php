@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Activity;
 use App\Task;
+use DB;
 
 class TaskController extends Controller
 {
@@ -51,20 +53,23 @@ class TaskController extends Controller
     {
         $this->validate($request, [
 
-            'activity_id'=>'required',
-            'project_status'=>'required',
-            'progress'=>'required|numeric|max:100'
+            'activity_id'=>'required|unique:tasks',
+            'status'=>'required',
+            'progress'=>'required|numeric|max:100|min:0'
 
         ]);
+
+     
         Task::create([
 
-            'activity_id'=>$request->activity_id,
-            'status'=>$request->project_status,
-            'progress'=>$request->progress
+        'activity_id'=>$request->activity_id,
+        'status'=>$request->status,
+        'progress'=>$request->progress
            
         ]);
 
-        return redirect(route('tasks.index'))->with('message','The task has been added to the project');
+
+        return redirect(route('tasks.index'))->with('message','The task has been added to the project');   
     }
 
     /**
@@ -87,7 +92,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -99,7 +106,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $task = Task::findOrFail($id);
+        $task->status = $request->input('status');
+        $task->progress=$request->input('progress');
+        $task->save();
+
+        return redirect()->route('tasks.index', 
+            $task->id)->with('message', 
+            'Status, '. $task->activity_id.' updated');
     }
 
     /**
@@ -112,6 +127,7 @@ class TaskController extends Controller
     {
         //
     }
+
 
 
 }

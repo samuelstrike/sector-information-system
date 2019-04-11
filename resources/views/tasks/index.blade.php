@@ -14,6 +14,7 @@
 		      <th scope="col">Project</th>
 		      <th scope="col">Status</th>
 		      <th scope="col">Progress (%)</th>
+		      <th scope="col">Operation</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -23,6 +24,9 @@
 		      <td>{{$task->activity->name}}</td>
 		      <td>{{$task->status }}</td>
 		      <td>{{$task->progress}}</td>
+		      <td>
+		      	 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+		      </td>
 		    </tr>
 		    @endforeach
 		  </tbody>
