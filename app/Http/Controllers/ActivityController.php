@@ -13,7 +13,7 @@ class ActivityController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth','clearance'])->except('index','show');
     }
 
     /**

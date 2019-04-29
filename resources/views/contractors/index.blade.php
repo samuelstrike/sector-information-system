@@ -23,7 +23,9 @@
                     <th>Contractor Address</th>
                     <th>Contact Number</th>
                     <th>CDB Number</th>
+                    @can('Edit Contractor')
                     <th>Operation</th>
+                    @endcan
                 </tr>
             </thead>
              
@@ -38,10 +40,13 @@
                     <td>{{ $contractor->phone }}</td>
                     <td>{{ $contractor->cdb }}</td>
                     <td>
+                    @can('Edit Contractor')
                    	<a href="{{ route('contractors.edit', $contractor->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
-
+                    @endcan
+                    @can('Delete Contractor')
                     {!! Form::open(['method' => 'DELETE', 'route' => ['contractors.destroy', $contractor->id] ]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    @endcan
                     {!! Form::close() !!}
                    </td>	 
                 </tr>
@@ -51,8 +56,9 @@
             </tbody>
 
         </table>
-
-    <a href="{{ route('contractors.create') }}" class="btn btn-success">Add Contractor</a>    
+        @can('Create Contractor')
+            <a href="{{ route('contractors.create') }}" class="btn btn-success">Add Contractor</a>    
+        @endcan
     </div>
     {{$contractors->links()}}
 

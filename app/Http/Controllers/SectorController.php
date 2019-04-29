@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sector;
+use Auth;
 use Session;
 
 
@@ -11,7 +12,7 @@ class SectorController extends Controller
 {
 
     public function __construct() {
-        $this->middleware(['auth', 'clearance']);
+        $this->middleware(['auth', 'clearance'])->except('index','show');
     }
     /**
      * Display a listing of the resource.

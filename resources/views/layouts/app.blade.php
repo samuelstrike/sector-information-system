@@ -64,6 +64,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
+
 <body class="hold-transition skin-blue  sidebar-mini ">
 <div class="wrapper">
 
@@ -187,20 +188,25 @@ desired effect
         <li class="header">HEADER</li>
         <li class="active"><a href="{{ route('home')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <!-- Optionally, you can add icons to the links -->
+         @can('Administer roles & permissions')
         <li><a href="{{ route('roles.index')}}"><i class="fa fa-link"></i> <span>Manage Roles</span></a></li>
         <li><a href="{{ route('permissions.index')}}"><i class="fa fa-link"></i> <span>Manage Permission</span></a></li>
+          @endcan
         
         <li class="treeview">
-          <a href="{{route('sectors.index')}}"><i class="fa fa-link"></i> <span>Manage Sector</span>
+          <a href="{{route('sectors.index')}}"><i class="fa fa-link"></i> <span>Sectors</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
+            @can('Create Sector')
             <li><a href="{{ route('sectors.create')}}">Create Sector</a></li>
+            @endcan
             <li><a href="{{ route('sectors.index')}}">Sector List</a></li>
           </ul>
         </li>
+        @can('Administer roles & permissions')
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Manage Users</span>
             <span class="pull-right-container">
@@ -212,7 +218,7 @@ desired effect
             <li><a href="{{ route('users.index')}}">User List</a></li>
           </ul>
         </li>
-
+        @endcan
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Manage Post</span>
             <span class="pull-right-container">
@@ -231,7 +237,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
+            @can('Create Activity')
             <li><a href="{{ route('activity.create')}}">Create Activity</a></li>
+            @endcan
             <li><a href="{{ route('activity.index')}}">List Activity</a></li>
           </ul>
         </li>
@@ -242,7 +250,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
+            @can('Create Contractor')
             <li><a href="{{ route('contractors.create')}}">Add Contractor</a></li>
+            @endcan
             <li><a href="{{ route('contractors.index')}}">Contractor List</a></li>
           </ul>
         </li>
@@ -253,7 +263,9 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
+            @can('Create Task')
             <li><a href="{{ route('tasks.create')}}">Add Task</a></li>
+            @endcan
             <li><a href="{{ route('tasks.index')}}">Task List</a></li>
           </ul>
         </li>

@@ -25,7 +25,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
                     <h5>Welcome {{ auth()->user()->name}} !</h5>
                 </div>
       </div>

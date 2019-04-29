@@ -14,7 +14,9 @@
 		      <th scope="col">Project</th>
 		      <th scope="col">Status</th>
 		      <th scope="col">Progress (%)</th>
+		      @can('Edit Task')
 		      <th scope="col">Operation</th>
+		      @endcan
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -25,7 +27,9 @@
 		      <td>{{$task->status }}</td>
 		      <td>{{$task->progress}}</td>
 		      <td>
+		      	@can('Edit Task')
 		      	 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+		      	 @endcan
 		      </td>
 		    </tr>
 		    @endforeach
