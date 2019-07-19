@@ -43,3 +43,4 @@ Route::resource('tasks','TaskController');
 // 	auth()->user()->assignRole('Administer');
 // 	auth()->user()->givePermissionTo('Administer roles & permissions');
 // });
+Route::get('/pie', 'StatusPieChart@index');

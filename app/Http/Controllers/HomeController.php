@@ -36,8 +36,20 @@ class HomeController extends Controller
         
         $users=User::all();
         $contractors=Contractor::all();
+        $data=DB::table('tasks')
+                ->select(
+                    DB::raw('status as status'),
+                    DB::raw('count(*) as number'))
+                ->groupBy('status')
+                ->get();
+        $array[]=['Status','Number'];
 
-        return view('home',compact('activitys','sectors','contractors','users','tasks'));
+        foreach ($data as $key => $value) {
+            
+            $array[++$key]=[$value->status, $value->number];
+        }
+
+        return view('home',compact('activitys','sectors','contractors','users','tasks','array',json_encode($array)));
     }
 
 }

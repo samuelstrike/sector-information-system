@@ -1,5 +1,37 @@
 @extends('layouts.app')
 
+@section('script')
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js "></script>
+<style type="text/css">
+    .box{
+      width: 600px;
+      margin:0 auto;
+    }
+
+  </style>
+  <script type="text/javascript">
+    var analytics = @json($array);
+
+    google.charts.load('current', {'packages':['corechart']});
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart()
+    {
+      var data=google.visualization.arrayToDataTable(analytics);
+      
+      var options={
+
+        title: 'ALL PROJECT STATUS IN PERCENTAGE',
+          is3D: true,
+      }; 
+      var chart= new google.visualization.PieChart(document.getElementById('pie_chart'));
+      chart.draw(data, options);
+    }
+  </script>
+
+@endsection
 @section('content')
 
 
@@ -101,7 +133,8 @@
                     <th>SL #</th>
                     <th>Project Name</th>
                     <th>Sector</th>
-                    <th>Project Manager</th>
+                    <th>Sector Head</th>
+                    <th>Engineer</th>
                     <th>location</th>
                     <th>Status</th>
                     
@@ -113,6 +146,7 @@
                   <td>{{$loop->iteration}}</td>
                   <td>{{$activity->name}}</td>
                   <td>{{$activity->user->sector->sector_name}}</td>
+                  <td>{{$activity->user->sector->sector_head}}</td>
                   <td>{{$activity->user->name}}</td>
                   <td>{{$activity->location}}</td>
                   @foreach ($activity->task as $activity_task)
@@ -130,7 +164,21 @@
         <center>{{$activitys->links()}}</center> 
     </div>
     </div>
+    <div class="col-md-6">
+     
+    
 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Project Status (%)</h3>
+      </div>
+      <div class="panel-body">
+        <div id="pie_chart" style="width:550px; height:392px;">
+          
+        </div>
+      </div>
+    </div>
+    </div>
     </section>
 
 @endsection
