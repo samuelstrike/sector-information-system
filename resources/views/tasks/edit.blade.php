@@ -21,12 +21,21 @@
              </select>
             </div>
             <div class="form-group">
-                {{ Form::label('project_progress', 'Project Progress')}}
+                {{ Form::label('project_remarks', 'Remark')}}
                 <div class="input-group">
-                {{ Form::number('progress','',array('class'=>'form-control','placeholder'=>'Activity Progress physically','step'=>'any'))}}
-                <span class="input-group-addon">%</span>
+                {{ Form::text('progress','',array('class'=>'form-control','placeholder'=>'Remarks of Project status','step'=>'any'))}}
+               
           </div>
         </div>
+        <div class="form-group">
+            <label>Project Monitoring Date:</label>
+              <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                    <input type="text" name="monitor_date" class="form-control pull-right" id="startdatepicker" placeholder="Activity start Date">
+              </div>
+          </div>
 
             {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
 

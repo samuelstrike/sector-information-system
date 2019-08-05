@@ -55,7 +55,7 @@ class TaskController extends Controller
 
             'activity_id'=>'required|unique:tasks',
             'status'=>'required',
-            'progress'=>'required|numeric|max:100|min:0'
+            'progress'=>'required|max:100|min:0'
 
         ]);
 
@@ -64,7 +64,8 @@ class TaskController extends Controller
 
         'activity_id'=>$request->activity_id,
         'status'=>$request->status,
-        'progress'=>$request->progress
+        'progress'=>$request->progress,
+        'monitor_date'=>$request->monitor_date
            
         ]);
 
@@ -110,6 +111,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->status = $request->input('status');
         $task->progress=$request->input('progress');
+        $task->monitor_date=$request->input('monitor_date');
         $task->save();
 
         return redirect()->route('tasks.index', 

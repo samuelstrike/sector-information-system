@@ -137,6 +137,8 @@
                     <th>Engineer</th>
                     <th>location</th>
                     <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Monitored Date</th>
                     
                 </tr>
             </tbody>
@@ -151,7 +153,8 @@
                   <td>{{$activity->location}}</td>
                   @foreach ($activity->task as $activity_task)
                   <td>{{ $activity_task->status }}</td> 
-                
+                  <td>{{ $activity_task->progress }}</td>
+                  <td>{{ $activity_task->monitor_date }}</td>
                   @endforeach
                   
                 </tr>

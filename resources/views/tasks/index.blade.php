@@ -13,7 +13,8 @@
 		      <th scope="col">#</th>
 		      <th scope="col">Project</th>
 		      <th scope="col">Status</th>
-		      <th scope="col">Progress (%)</th>
+		      <th scope="col">Remarks</th>
+		      <th scope="col">Monitored Date</th>
 		      @can('Edit Task')
 		      <th scope="col">Operation</th>
 		      @endcan
@@ -26,6 +27,7 @@
 		      <td>{{$task->activity->name}}</td>
 		      <td>{{$task->status }}</td>
 		      <td>{{$task->progress}}</td>
+		      <td>{{$task->monitor_date}}</td>
 		      <td>
 		      	@can('Edit Task')
 		      	 <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>

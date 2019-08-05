@@ -7,7 +7,7 @@ use App\Activity;
 
 class Task extends Model
 {
-    protected $fillable = ['activity_id','status','progress'];
+    protected $fillable = ['activity_id','status','progress','monitor_date'];
 
     protected $table='tasks';
 
