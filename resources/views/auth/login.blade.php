@@ -81,9 +81,9 @@
     </div>-->
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
+   <!-- <a href="#">I forgot my password</a><br>
     <a href="{{route('register') }}" class="text-center">Register</a>
-
+  -->
   </div>
   <!-- /.login-box-body -->
 </div>

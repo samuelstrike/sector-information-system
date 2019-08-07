@@ -2,7 +2,14 @@
 
 @section('script')
 
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js "></script>
+
+
+
+
 <style type="text/css">
     .box{
       width: 600px;
@@ -29,7 +36,14 @@
       var chart= new google.visualization.PieChart(document.getElementById('pie_chart'));
       chart.draw(data, options);
     }
+
+    
+   
   </script>
+
+  
+  
+
 
 @endsection
 @section('content')
@@ -96,7 +110,7 @@
           <div class="small-box bg-red">
             <div class="inner">
               <h3>{{$activitys->count()}}</h3>
-              <p>Ongoing Project</p>
+              <p>On Project</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -121,31 +135,29 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">Projects</h3>
-        </div>
-        <div class="box-body no-padding">
-          <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <th>SL #</th>
-                    <th>Project Name</th>
-                    <th>Sector</th>
-                    <th>Sector Head</th>
-                    <th>Engineer</th>
-                    <th>location</th>
-                    <th>Status</th>
-                    <th>Remarks</th>
-                    <th>Monitored Date</th>
-                    
-                </tr>
-            </tbody>
+      
+        
+          <div class="panel-group">
+            <div class="panel panel-primary">
+              <div class="panel-heading">PROJECT</div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered" id="myTable">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Sector</th>
+                <th>Sector Head</th>
+                <th>Engineer</th>
+                <th>location</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Monitored Date</th>
+              </tr>
+            </thead>
             <tbody>
                 @foreach($activitys as $activity)
                 <tr>
-                  <td>{{$loop->iteration}}</td>
                   <td>{{$activity->name}}</td>
                   <td>{{$activity->user->sector->sector_name}}</td>
                   <td>{{$activity->user->sector->sector_head}}</td>
@@ -156,27 +168,30 @@
                   <td>{{ $activity_task->progress }}</td>
                   <td>{{ $activity_task->monitor_date }}</td>
                   @endforeach
-                  
                 </tr>
         
                 @endforeach
             </tbody>
-
+    
         </table>
-        </div> 
-        <center>{{$activitys->links()}}</center> 
-    </div>
-    </div>
+      </div>
+              </div>
+            </div>
+          </div>
+            
+       
+        
+      
+      
+      
     <div class="col-md-6">
      
-    
-
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Project Status (%)</h3>
       </div>
       <div class="panel-body">
-        <div id="pie_chart" style="width:550px; height:392px;">
+        <div id="pie_chart" style="width:530px; height:392px;">
           
         </div>
       </div>
